@@ -10,7 +10,7 @@ namespace Tic_Tac_Toe
         {
             
             Console.Clear();
-            string [,] instructionBoard = {{"0","1","2"},{"3","4","5"},{"6","7","8"}};
+            string [,] instructionBoard = {{"1","2","3"},{"4","5","6"},{"7","8","9"}};
             //defaultBoard = {{" "," ", " "},{" "," "," "},{" "," ", " "}};
             string currentPlayer = "X";
             // Source https://www.exploratorium.edu/brain_explorer/tictactoe.html
@@ -20,33 +20,28 @@ namespace Tic_Tac_Toe
             string gameState = "playOn";
             // Create a 2D array board with a space to maintain the visual of the drawn board 
             string[,] currentBoard = {{ " ", " ", " " },{ " ", " ", " " },{ " ", " ", " " }};
+            // Game state is determined by the playAgain method
             while (gameState != "DONE")
             {
                 if (gameState == "RESET")
                 {
+                    // When a player wants play another game we reset the  game board to the empty state
                     currentBoard = new string [,] { { " ", " ", " " },{ " ", " ", " " },{ " ", " ", " " } };
                 }
                 Console.WriteLine(instructions1);
                 PrintGameBoard(instructionBoard);
                 Console.WriteLine(instructions2);
                 PrintGameBoard(currentBoard);
-                Console.WriteLine("Player {0}, it is your turn. Please select an empty square: ", currentPlayer );
-                string userSelection = Console.ReadLine();
-                currentBoard = PlayGame(userSelection, currentBoard, currentPlayer);
-                Console.WriteLine("Successful selection made");
-                // @ Source https://www.tutorialspoint.com/Chash-Program-to-Pause-a-Thread#:~:text=C%23%20Program%20to%20Pause%20a%20Thread.%20To%20pause,set%20the%20sleep%20method%20to%20pause%20the%20thread.
-                // Needed for user experience to pause so the message would display long enough to read parameter is in milliseconds
-                Thread.Sleep(500); // Pause here please for a few seconds                
+                currentBoard = PlayGame(currentBoard, currentPlayer);
+             
                 gameState = CheckForWinningCombination(currentBoard, currentPlayer);
                 currentPlayer = ChangePlayer(currentPlayer);
-                Console.WriteLine("Test");
-                
                 Console.Clear();
             }            
         }
         
         static void PrintGameBoard(string [,] currentArray)
-        // Method to create a tic tac toe board that shows player what number represents which square
+        // Method to create a tic tac toe board that populates with the parameter Array
         // Spend way to much time on this section and over thought it with nested loops. In the end just used console write.
         {   
                 string [,] squareArr = currentArray;
@@ -61,16 +56,120 @@ namespace Tic_Tac_Toe
                 Console.WriteLine("      |       |        \n"); 
         }     
 
-        static string ChangePlayer(string currentPlayer)
+        static string[,] PlayGame (string[,] currentArray, string currentPlayer)
+        // Method to check the users selection for validity - valid unoccupied square and square number
         {
-            if (currentPlayer == "X")
+            Console.WriteLine("Player {0}, it is your turn. Please select an empty square: ", currentPlayer );
+            string userSelection = Console.ReadLine();
+            // Start of error checking. Adapated from Class.
+            while (true)
             {
-                return "O";
+                // Check the state of the gameboard array to see if square is occupied, if not place mark in the square
+                switch (userSelection)
+                {
+                    case "1":
+                        if (currentArray[0,0] == " ")
+                        {
+                            currentArray[0,0] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    case "2":
+                        if (currentArray[0,1] == " ")
+                        {
+                            currentArray[0,1] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                    
+                        case "3":
+                        if (currentArray[0,2] == " ")
+                        {
+                            currentArray[0,2] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                    
+                        case "4":
+                        if (currentArray[1,0] == " ")
+                        {
+                            currentArray[1,0] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                    
+                        case "5":
+                        if (currentArray[1,1] == " ")
+                        {
+                            currentArray[1,1] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                    
+                        case "6":
+                        if (currentArray[1,2] == " ")
+                        {
+                            currentArray[1,2] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                    
+                        case "7":
+                        if (currentArray[2,0] == " ")
+                        {
+                            currentArray[2,0] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                    
+                        case "8":
+                        if (currentArray[2,1] == " ")
+                        {
+                            currentArray[2,1] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }             
+                        case "9":
+                        if (currentArray[2,2] == " ")
+                        {
+                            currentArray[2,2] = currentPlayer;
+                            return currentArray;
+                        }
+                        else
+                        {
+                            break;
+                        }                        
+                } 
+                Console.WriteLine("That is an invalid square selection please try again!\nPlease try again by entering a valid square number:...");
+                userSelection = Console.ReadLine();           
             }
-            return "X";
+                Console.WriteLine("Successful selection made");
+                // @ Source https://www.tutorialspoint.com/Chash-Program-to-Pause-a-Thread#:~:text=C%23%20Program%20to%20Pause%20a%20Thread.%20To%20pause,set%20the%20sleep%20method%20to%20pause%20the%20thread.
+                // Needed for user experience to pause so the message would display long enough to read parameter is in milliseconds
+                Thread.Sleep(800); // Pause here please for a less than a second
         }
-
+        
         static string CheckForWinningCombination( string[,] currentArray, string currentPlayer)
+        // Method to define what a winning combination and to determine if a game winning combination has been made
+        // Also defines when a draw is reached by having no default strings in the Array " ".
         {
             // Winning rows are 012, 345, 678 column are 036, 147, 258, horizontal 048, 246 but not if they are just a space
             if (currentArray[0,0]==currentArray[0,1] && currentArray[0,2] == currentArray[0,1] && currentArray[0,0] != " "||
@@ -82,7 +181,7 @@ namespace Tic_Tac_Toe
             currentArray[0,0]==currentArray[1,1] && currentArray[2,2] == currentArray[0,0] && currentArray[0,0] != " " ||
             currentArray[0,2]==currentArray[1,1] && currentArray[2,0] == currentArray[0,2] && currentArray[0,2] != " ")
             {
-                Conole.Clear();
+                Console.Clear();
                 PrintGameBoard(currentArray);
                 Console.WriteLine("Congratulations!!!");
                 Console.WriteLine(Art(currentPlayer));
@@ -106,121 +205,19 @@ namespace Tic_Tac_Toe
             Console.WriteLine(Art("draw"));
             return PlayAgain();
         }
-        static string[,] PlayGame (string userSelection, string[,] currentArray, string currentPlayer)
-        // Method to check the users selection for validity - valid unoccupied square and square number
+       
+        static string ChangePlayer(string currentPlayer)
+        // Method to Change which player it is currently
         {
-            // Start of error checking. Adapated from Class.
-            int userSquareSelection = 10;
-            while (true)
+            if (currentPlayer == "X")
             {
-                try
-                // First check to see if it is an integer
-                {
-                    userSquareSelection = Convert.ToInt32(userSelection);                    
-                }    
-                catch    
-                {
-                    Console.WriteLine("That was not a number.");
-                }
-                // Check the state of the gameboard array to see if square is occupied, if not place mark in the square
-                switch (userSquareSelection)
-                {
-                    case 0:
-                        if (currentArray[0,0] == " ")
-                        {
-                            currentArray[0,0] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    case 1:
-                        if (currentArray[0,1] == " ")
-                        {
-                            currentArray[0,1] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                    
-                        case 2:
-                        if (currentArray[0,2] == " ")
-                        {
-                            currentArray[0,2] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                    
-                        case 3:
-                        if (currentArray[1,0] == " ")
-                        {
-                            currentArray[1,0] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                    
-                        case 4:
-                        if (currentArray[1,1] == " ")
-                        {
-                            currentArray[1,1] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                    
-                        case 5:
-                        if (currentArray[1,2] == " ")
-                        {
-                            currentArray[1,2] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                    
-                        case 6:
-                        if (currentArray[2,0] == " ")
-                        {
-                            currentArray[2,0] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                    
-                        case 7:
-                        if (currentArray[2,1] == " ")
-                        {
-                            currentArray[2,1] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }             
-                        case 8:
-                        if (currentArray[2,2] == " ")
-                        {
-                            currentArray[2,2] = currentPlayer;
-                            return currentArray;
-                        }
-                        else
-                        {
-                            break;
-                        }                        
-                } 
-                Console.WriteLine("That is an invalid square selection please try again!\nPlease try again by entering a valid square number:...");
-                userSelection = Console.ReadLine();           
+                return "O";
             }
+            return "X";
         }
+
         static string PlayAgain()
+        // A method to ask players whether they would like to play again.
         {
             Console.Write("Would you like to play again? (Y/N) ..."); 
             string playAgain = (Console.ReadLine()).ToUpper();
@@ -239,16 +236,17 @@ namespace Tic_Tac_Toe
                 return "DONE";
             }
         }
+        
         static string Art(string status)
+        // A method for providing Winner ASCII art strings
+        //@ Source http://programmingisfun.com/command-line-ascii-design/
+        // Purpose - creating a variable to hold ASCII ART - you need the @ for the " 
+        // @ Souce https://www.asciiart.eu/ -- ASCII Art
+        // @ Source https://www.coolgenerator.com/ascii-text-generator
         {
             if (status == "draw")
             {
 
-            
-            //@ Source http://programmingisfun.com/command-line-ascii-design/
-            // Purpose - creating a variable to hold ASCII ART - you need the @ for the " 
-            // @ Souce https://www.asciiart.eu/ -- ASCII Art
-            // @ Source https://www.coolgenerator.com/ascii-text-generator
                 string meow1 = @"███╗   ███╗███████╗ ██████╗ ██╗    ██╗
 ████╗ ████║██╔════╝██╔═══██╗██║    ██║
 ██╔████╔██║█████╗  ██║   ██║██║ █╗ ██║
@@ -284,7 +282,7 @@ namespace Tic_Tac_Toe
 ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝         ╚═════╝ ";
                 return playerO;
             }
-        return "ERROR";
+            return "ERROR";
         }
 
     }
