@@ -10,19 +10,19 @@ namespace Tic_Tac_Toe
             
             Console.Clear();
             string [,] instructionBoard = {{"0","1","2"},{"3","4","5"},{"6","7","8"}};
-            string [,] defaultBoard = {{" "," ", " "},{" "," "," "},{" "," ", " "}};
+            //defaultBoard = {{" "," ", " "},{" "," "," "},{" "," ", " "}};
             string currentPlayer = "X";
             // Source https://www.exploratorium.edu/brain_explorer/tictactoe.html
             // Copied the rules for Tic Tac Toe for readability and user understanding
             string instructions1 = "The game is played on a grid that's 3 squares by 3 squares. The first player is X and the second is O. \nPlayers take turns selecting a square to put their marks in.The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner. \nWhen all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends with the CAT winning (a draw or tie). \n";
             string instructions2 = "Please note that all the squares are numbered to their corresponding location. \nTo make your move please type the number of an empty square you would like to put your mark in when prompted on your turn. \nThe board will refresh after each turn. \n \nCurrent Board in Play";
             string gameState = "playOn";
-            string[,] currentBoard = defaultBoard;
+            string[,] currentBoard = {{ " ", " ", " " },{ " ", " ", " " },{ " ", " ", " " }};
             while (gameState != "DONE")
             {
                 if (gameState == "RESET")
                 {
-                    currentBoard = defaultBoard;
+                    currentBoard = new string [,] { { " ", " ", " " },{ " ", " ", " " },{ " ", " ", " " } };
                 }
                 Console.WriteLine(instructions1);
                 PrintGameBoard(instructionBoard);
@@ -81,7 +81,7 @@ namespace Tic_Tac_Toe
                 string playAgain = (Console.ReadLine()).ToUpper();
                 if (playAgain == "Y")
                 {
-                    currentArray = new string[,]{{" "," ", " "},{" "," "," "},{" "," ", " "}};
+                    //currentArray = new string[,]{{" "," ", " "},{" "," "," "},{" "," ", " "}};
                     return "RESET";
                 }
                 else if (playAgain == "N")
