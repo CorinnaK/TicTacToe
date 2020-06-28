@@ -82,8 +82,11 @@ namespace Tic_Tac_Toe
             currentArray[0,0]==currentArray[1,1] && currentArray[2,2] == currentArray[0,0] && currentArray[0,0] != " " ||
             currentArray[0,2]==currentArray[1,1] && currentArray[2,0] == currentArray[0,2] && currentArray[0,2] != " ")
             {
+                Conole.Clear();
                 PrintGameBoard(currentArray);
-                Console.WriteLine("Congratulations Player {0}, you are the winner!!!!",currentPlayer);
+                Console.WriteLine("Congratulations!!!");
+                Console.WriteLine(Art(currentPlayer));
+                Console.WriteLine("You are the Winner");
                 return PlayAgain();      
             }
             // Checking each square in the array to see if it the board is full
@@ -97,7 +100,10 @@ namespace Tic_Tac_Toe
                         }
                     }
                 }
+            Console.Clear();    
+            PrintGameBoard(currentArray);    
             Console.WriteLine(" It is a Draw! The CAT has won --- Meow!");
+            Console.WriteLine(Art("draw"));
             return PlayAgain();
         }
         static string[,] PlayGame (string userSelection, string[,] currentArray, string currentPlayer)
@@ -232,6 +238,53 @@ namespace Tic_Tac_Toe
                 Thread.Sleep(500);
                 return "DONE";
             }
+        }
+        static string Art(string status)
+        {
+            if (status == "draw")
+            {
+
+            
+            //@ Source http://programmingisfun.com/command-line-ascii-design/
+            // Purpose - creating a variable to hold ASCII ART - you need the @ for the " 
+            // @ Souce https://www.asciiart.eu/ -- ASCII Art
+            // @ Source https://www.coolgenerator.com/ascii-text-generator
+                string meow1 = @"███╗   ███╗███████╗ ██████╗ ██╗    ██╗
+████╗ ████║██╔════╝██╔═══██╗██║    ██║
+██╔████╔██║█████╗  ██║   ██║██║ █╗ ██║
+██║╚██╔╝██║██╔══╝  ██║   ██║██║███╗██║
+██║ ╚═╝ ██║███████╗╚██████╔╝╚███╔███╔╝
+╚═╝     ╚═╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ";
+
+                string cat = @"   |\---/|
+   | ,_, |
+    \_`_/-..----.
+ ___/ `   ' ,""+ \  sk
+(__...'   __\    |`.___.';
+  (_,...'(_,.`__)/'...";
+                return meow1;
+            }
+            else if (status == "X")
+            {
+                string playerX = @"██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗         ██╗  ██╗
+██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗        ╚██╗██╔╝
+██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝         ╚███╔╝ 
+██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗         ██╔██╗ 
+██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║        ██╔╝ ██╗
+╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝        ╚═╝  ╚═╝";
+                return playerX;
+            }
+            else if (status == "O")
+            {
+                string playerO = @"██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗          ██████╗ 
+██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗        ██╔═══██╗
+██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝        ██║   ██║
+██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗        ██║   ██║
+██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║        ╚██████╔╝
+╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝         ╚═════╝ ";
+                return playerO;
+            }
+        return "ERROR";
         }
 
     }
