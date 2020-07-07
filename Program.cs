@@ -11,7 +11,6 @@ namespace Tic_Tac_Toe
             
             Console.Clear();
             string [,] instructionBoard = {{"1","2","3"},{"4","5","6"},{"7","8","9"}};
-            //defaultBoard = {{" "," ", " "},{" "," "," "},{" "," ", " "}};
             string currentPlayer = "X";
             // Source https://www.exploratorium.edu/brain_explorer/tictactoe.html
             // Copied the rules for Tic Tac Toe for readability and user understanding
@@ -19,6 +18,7 @@ namespace Tic_Tac_Toe
             string instructions2 = "Please note that all the squares are numbered to their corresponding location. \nTo make your move please type the number of an empty square you would like to put your mark in when prompted on your turn. \nThe board will refresh after each turn. \n \nCurrent Board in Play";
             string gameState = "playOn";
             // Create a 2D array board with a space to maintain the visual of the drawn board 
+ 
             string[,] currentBoard = {{ " ", " ", " " },{ " ", " ", " " },{ " ", " ", " " }};
             // Game state is determined by the playAgain method
             while (gameState != "DONE")
@@ -33,7 +33,6 @@ namespace Tic_Tac_Toe
                 Console.WriteLine(instructions2);
                 PrintGameBoard(currentBoard);
                 currentBoard = PlayGame(currentBoard, currentPlayer);
-             
                 gameState = CheckForWinningCombination(currentBoard, currentPlayer);
                 currentPlayer = ChangePlayer(currentPlayer);
                 Console.Clear();
@@ -161,10 +160,10 @@ namespace Tic_Tac_Toe
                 Console.WriteLine("That is an invalid square selection please try again!\nPlease try again by entering a valid square number:...");
                 userSelection = Console.ReadLine();           
             }
-                Console.WriteLine("Successful selection made");
+            Console.WriteLine("Successful selection made");
                 // @ Source https://www.tutorialspoint.com/Chash-Program-to-Pause-a-Thread#:~:text=C%23%20Program%20to%20Pause%20a%20Thread.%20To%20pause,set%20the%20sleep%20method%20to%20pause%20the%20thread.
                 // Needed for user experience to pause so the message would display long enough to read parameter is in milliseconds
-                Thread.Sleep(800); // Pause here please for a less than a second
+            Thread.Sleep(5000); // Pause here please for  a second
         }
         
         static string CheckForWinningCombination( string[,] currentArray, string currentPlayer)
@@ -218,22 +217,23 @@ namespace Tic_Tac_Toe
 
         static string PlayAgain()
         // A method to ask players whether they would like to play again.
-        {
-            Console.Write("Would you like to play again? (Y/N) ..."); 
-            string playAgain = (Console.ReadLine()).ToUpper();
-            if (playAgain == "Y" || playAgain == "YES")
-            {
-                return "RESET";
-            }
-                else if (playAgain == "N")
-            {
-                return "DONE";
-            }
-            else
-            {
-                Console.WriteLine("That was an invalid selection. Exiting now.");
-                Thread.Sleep(500);
-                return "DONE";
+        {   
+            while (true)
+            { 
+                Console.Write("Would you like to play again? (Y/N) ..."); 
+                string playAgain = (Console.ReadLine()).ToUpper();
+                if (playAgain == "Y" || playAgain == "YES")
+                {
+                    return "RESET";
+                }
+                    else if (playAgain == "N" || playAgain == "NO")
+                {
+                    return "DONE";
+                }
+                else
+                {
+                    Console.WriteLine("Invalid entry");
+                }
             }
         }
         
@@ -254,12 +254,12 @@ namespace Tic_Tac_Toe
 ██║ ╚═╝ ██║███████╗╚██████╔╝╚███╔███╔╝
 ╚═╝     ╚═╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ";
 
-                string cat = @"   |\---/|
-   | ,_, |
-    \_`_/-..----.
- ___/ `   ' ,""+ \  sk
-(__...'   __\    |`.___.';
-  (_,...'(_,.`__)/'...";
+//                 string cat = @"   |\---/|
+//    | ,_, |
+//     \_`_/-..----.
+//  ___/ `   ' ,""+ \  sk
+// (__...'   __\    |`.___.';
+//   (_,...'(_,.`__)/'...";
                 return meow1;
             }
             else if (status == "X")
