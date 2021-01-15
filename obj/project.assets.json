@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\secur\\Projects\\Tic Tac Toe\\Tic Tac Toe.csproj",
+      "projectUniqueName": "C:\\Users\\secur\\Projects\\Completed Assignments\\Tic Tac Toe\\Tic Tac Toe.csproj",
       "projectName": "Tic Tac Toe",
-      "projectPath": "C:\\Users\\secur\\Projects\\Tic Tac Toe\\Tic Tac Toe.csproj",
+      "projectPath": "C:\\Users\\secur\\Projects\\Completed Assignments\\Tic Tac Toe\\Tic Tac Toe.csproj",
       "packagesPath": "C:\\Users\\secur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\secur\\Projects\\Tic Tac Toe\\obj\\",
+      "outputPath": "C:\\Users\\secur\\Projects\\Completed Assignments\\Tic Tac Toe\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\secur\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

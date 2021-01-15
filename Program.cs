@@ -160,10 +160,7 @@ namespace Tic_Tac_Toe
                 Console.WriteLine("That is an invalid square selection please try again!\nPlease try again by entering a valid square number:...");
                 userSelection = Console.ReadLine();           
             }
-            Console.WriteLine("Successful selection made");
-                // @ Source https://www.tutorialspoint.com/Chash-Program-to-Pause-a-Thread#:~:text=C%23%20Program%20to%20Pause%20a%20Thread.%20To%20pause,set%20the%20sleep%20method%20to%20pause%20the%20thread.
-                // Needed for user experience to pause so the message would display long enough to read parameter is in milliseconds
-            Thread.Sleep(5000); // Pause here please for  a second
+
         }
         
         static string CheckForWinningCombination( string[,] currentArray, string currentPlayer)
