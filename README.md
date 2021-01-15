@@ -1,3 +1,3 @@
-# c-homework-tictactoe-CorinnaK
+C# Console TIC TAC TOE
 
- Trello Board - https://trello.com/b/ssXl2MhY/tic-tac-toe
+
